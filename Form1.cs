@@ -45,17 +45,32 @@ namespace jackboxapp
             jackboxEN();
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-            versions();
-        }
-
         private void pictureBox1_Resize(object sender, EventArgs e)
         {
 
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            github();
+        }
+
+        private void button3_Click(object sender, EventArgs e) //english
+        {
+            englishLanguage();
+        }
+
+        private void button4_Click(object sender, EventArgs e) //russian
+        {
+            russianLanguage();
+        }
+
+        private void webBrowser2_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
         }
