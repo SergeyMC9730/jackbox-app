@@ -49,5 +49,15 @@ namespace jackboxapp
         {
             versions();
         }
+
+        private void pictureBox1_Resize(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
