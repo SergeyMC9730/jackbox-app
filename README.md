@@ -1,2 +1,2 @@
 # jackbox-app
-Jackbox APP for small server
+A small dedicated Jackbox Games app for your Jackbox games!
