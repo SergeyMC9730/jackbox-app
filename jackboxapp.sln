@@ -13,13 +13,19 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Debug|x86.ActiveCfg = Release|x86
+		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Debug|x86.Build.0 = Release|x86
 		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Release|x86.ActiveCfg = Release|x86
+		{60A39EA7-6E17-40D7-A517-5A64C238C3E7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

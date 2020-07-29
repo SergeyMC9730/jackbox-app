@@ -15,6 +15,7 @@ namespace jackboxapp
         {
             Console.WriteLine("Loading...");
             Application.EnableVisualStyles();
+
             Application.SetCompatibleTextRenderingDefault(false);
             //Form1 frm = new Form1();
             //frm.setTrue();

@@ -1,9 +1,9 @@
-﻿using System.Threading;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System;
-using System.Diagnostics;
 //using strings2;
+//using Discord;
 
+using DiscordRPC;
 namespace jackboxapp
 {
     public class strings
@@ -19,6 +19,7 @@ namespace jackboxapp
             public static string EnglishReleaseButton = "Releases";
             public static string EnglishReleaseText = "1.3 - added link to GitHub\r\n        added language selector";
             public bool english = true;
+            public bool funStarted = false;
     }
     partial class Form1
     {
@@ -220,13 +221,122 @@ namespace jackboxapp
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        strings bools = new strings();
+        public DiscordRpcClient client;
+        //client = new DiscordRpcClient("737629176819089418");
+       public void Initialize()
+        {
+            /*
+            Create a discord client
+            NOTE: 	If you are using Unity3D, you must use the full constructor and define
+                     the pipe connection.
+            */
+            client = new DiscordRpcClient("737629176819089418");
+
+            //Set the logger
+            //client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
+
+            //Subscribe to events
+            client.OnReady += (sender, e) =>
+            {
+                Console.WriteLine("Received Ready from user {0}", e.User.Username);
+            };
+
+            client.OnPresenceUpdate += (sender, e) =>
+            {
+                Console.WriteLine("Received Update! {0}", e.Presence);
+            };
+
+            //Connect to the RPC
+            client.Initialize();
+
+            //Set the rich presence
+            //Call this as many times as you want and anywhere in your code.
+            client.SetPresence(new RichPresence()
+            {
+                Details = "Play Jackbox Games within our app!",
+                State = "Availiable on GitHub!",
+                Assets = new Assets()
+                {
+                    LargeImageKey = "rpciconbgno",
+                    LargeImageText = "Box",
+                    SmallImageKey = "tv",
+                    SmallImageText = "jackbox.tv"
+                }
+            });
+        }
+        //Initialize();
+        //var discord = new Discord.Discord("737629176819089418", (UInt64)Discord.CreateFlags.Default);
+        //strings bools = new strings();
+        public bool english = true;
+        public bool funStarted = false;
         public void jackboxRU()
         {
+            //bools.funStarted 
+            funStarted = true;
+            if(english == false)
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = "Играй в игры Jackbox через наше приложение!",
+                    State = "Доступно на GitHub!",
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "rpciconbgno",
+                        LargeImageText = "Коробка",
+                        SmallImageKey = "fun",
+                        SmallImageText = "jackbox.fun"
+                    }
+                });
+            } else
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = "Play Jackbox Games within our app!",
+                    State = "Availiable on GitHub!",
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "rpciconbgno",
+                        LargeImageText = "Box",
+                        SmallImageKey = "fun",
+                        SmallImageText = "jackbox.fun"
+                    }
+                });
+            }
             webBrowser1.Url = new System.Uri("https://jackbox.fun", System.UriKind.Absolute);
         }
         public void jackboxEN()
         {
+            funStarted = false;
+            if (english == false)
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = "Играй в игры Jackbox через наше приложение!",
+                    State = "Доступно на GitHub!",
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "rpciconbgno",
+                        LargeImageText = "Коробка",
+                        SmallImageKey = "tv",
+                        SmallImageText = "jackbox.tv"
+                    }
+                });
+            }
+            else
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = "Play Jackbox Games within our app!",
+                    State = "Availiable on GitHub!",
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "rpciconbgno",
+                        LargeImageText = "Box",
+                        SmallImageKey = "tv",
+                        SmallImageText = "jackbox.tv"
+                    }
+                });
+            }
             webBrowser1.Url = new System.Uri("https://jackbox.tv", System.UriKind.Absolute);
         }
         public void github()
@@ -240,7 +350,36 @@ namespace jackboxapp
             this.label4.Text = strings.EnglishReleaseText;
             this.Text = strings.EnglishWindowText;
             //strings.russian = false;
-            bools.english = true;
+            english = true;
+            if(funStarted == true)
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = "Play Jackbox Games within our app!",
+                    State = "Availiable on GitHub!",
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "rpciconbgno",
+                        LargeImageText = "Box",
+                        SmallImageKey = "fun",
+                        SmallImageText = "jackbox.fun"
+                    }
+                });
+            } else
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = "Play Jackbox Games within our app!",
+                    State = "Availiable on GitHub!",
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "rpciconbgno",
+                        LargeImageText = "Box",
+                        SmallImageKey = "tv",
+                        SmallImageText = "jackbox.tv"
+                    }
+                });
+            }
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -251,7 +390,37 @@ namespace jackboxapp
             this.label4.Text = strings.RussianReleaseText;
             this.Text = strings.EnglishWindowText;
             //strings.russian = false;
-            bools.english = false;
+            english = false;
+            if (funStarted == true)
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = "Играй в игры Jackbox через наше приложение!",
+                    State = "Доступно на GitHub!",
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "rpciconbgno",
+                        LargeImageText = "Коробка",
+                        SmallImageKey = "fun",
+                        SmallImageText = "jackbox.fun"
+                    }
+                });
+            }
+            else
+            {
+                client.SetPresence(new RichPresence()
+                {
+                    Details = "Играй в игры Jackbox через наше приложение!",
+                    State = "Доступно на GitHub!",
+                    Assets = new Assets()
+                    {
+                        LargeImageKey = "rpciconbgno",
+                        LargeImageText = "Коробка",
+                        SmallImageKey = "tv",
+                        SmallImageText = "jackbox.tv"
+                    }
+                });
+            }
             this.ResumeLayout(false);
             this.PerformLayout();
         }
